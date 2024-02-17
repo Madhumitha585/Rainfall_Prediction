@@ -47,3 +47,9 @@ print(Y)
 
 Y = np.array(Y,dtype=float)
 print(Y)
+
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+X = sc.fit_transform(X)
+
+print(X)
