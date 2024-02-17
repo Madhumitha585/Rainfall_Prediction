@@ -69,3 +69,10 @@ plt.figure(figsize=(20,20))
 g=sns.heatmap(corrmat,annot=True)
 
 sns.boxplot(data=dataset).set(title="Box Plot of weather")
+
+plt.figure(figsize=(10, 6))
+sns.histplot(dataset['MaxTemp'], bins=30, kde=True, color='blue')
+plt.title('Max Temperature Distribution')
+plt.xlabel('Max Temperature (°C)')
+plt.ylabel('Frequency')
+plt.show()
