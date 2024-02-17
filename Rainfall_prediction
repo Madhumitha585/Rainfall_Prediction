@@ -130,3 +130,46 @@ y_pred = clf.predict(X_test)
 
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy:.2f}")
+
+pip install gradio
+
+import gradio as gr
+
+# Define input components
+inputs = [
+    gr.Textbox(label="Date"),  # Assuming Date is in string format
+    gr.Textbox(label="Location"),
+    gr.Number(label="MinTemp"),
+    gr.Number(label="MaxTemp"),
+    gr.Number(label="Rainfall"),
+    gr.Textbox(label="WindGustDir"),
+    gr.Number(label="WindGustSpeed"),
+    gr.Textbox(label="WindDir9am"),
+    gr.Textbox(label="WindDir3pm"),
+    gr.Number(label="WindSpeed9am"),
+    gr.Number(label="WindSpeed3pm"),
+    gr.Number(label="Humidity9am"),
+    gr.Number(label="Humidity3pm"),
+    gr.Number(label="Pressure9am"),
+    gr.Number(label="Pressure3pm"),
+    gr.Number(label="Cloud9am"),
+    gr.Number(label="Cloud3pm"),
+    gr.Number(label="Temp9am"),
+    gr.Number(label="Temp3pm"),
+    gr.Radio(["Yes", "No"], label="RainToday")
+]
+
+# Define output components
+output = gr.Textbox(label="RainTomorrow Prediction")
+
+# Define the function to perform prediction
+def predict(date, location, min_temp, max_temp, rainfall, evaporation, sunshine, wind_gust_dir, wind_gust_speed, wind_dir_9am, wind_dir_3pm, wind_speed_9am, wind_speed_3pm, humidity_9am, humidity_3pm, pressure_9am, pressure_3pm, cloud_9am, cloud_3pm, temp_9am, temp_3pm, rain_today):
+    # Here, you can perform any preprocessing or data transformation if needed
+    # For now, we'll just return a placeholder value
+    return "No"
+
+# Create the Gradio interface
+iface = gr.Interface(fn=predict, inputs=inputs, outputs=output)
+
+# Launch the interface
+iface.launch()
