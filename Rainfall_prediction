@@ -62,3 +62,10 @@ X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size=0.2,random_state=
 print(X_train)
 
 print(Y_train)
+
+corrmat = dataset.corr(method = "spearman")
+plt.figure(figsize=(20,20))
+#plot heat map
+g=sns.heatmap(corrmat,annot=True)
+
+sns.boxplot(data=dataset).set(title="Box Plot of weather")
