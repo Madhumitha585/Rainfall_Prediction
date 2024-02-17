@@ -76,3 +76,11 @@ plt.title('Max Temperature Distribution')
 plt.xlabel('Max Temperature (°C)')
 plt.ylabel('Frequency')
 plt.show()
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+model_lr = LogisticRegression(random_state=42)
+model_lr.fit(X_train, Y_train)
+y_pred_lr = model_lr.predict(X_test)
+accuracy_lr = accuracy_score(Y_test, y_pred_lr)
+print(f'Logistic Regression Accuracy: {accuracy_lr:.2f}')
