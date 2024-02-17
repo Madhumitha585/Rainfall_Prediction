@@ -92,3 +92,32 @@ model_rf.fit(X_train, Y_train)
 y_pred_rf = model_rf.predict(X_test)
 accuracy_rf = accuracy_score(Y_test, y_pred_rf)
 print(f'Random Forest Accuracy: {accuracy_rf:.2f}')
+
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.preprocessing import LabelEncoder
+
+dataset.dropna(inplace=True)
+
+le = LabelEncoder()
+dataset['WindGustDir'] = le.fit_transform(dataset['WindGustDir'])
+dataset['WindDir9am'] = le.fit_transform(dataset['WindDir9am'])
+dataset['WindDir3pm'] = le.fit_transform(dataset['WindDir3pm'])
+dataset['RainToday'] = le.fit_transform(dataset['RainToday'])
+dataset['RainTomorrow'] = le.fit_transform(dataset['RainTomorrow'])
+
+X = dataset.drop(['Date', 'Location', 'RainTomorrow'], axis=1)
+y = dataset['RainTomorrow']
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+clf = DecisionTreeClassifier(random_state=42)
+
+clf.fit(X_train, y_train)
+
+y_pred = clf.predict(X_test)
+
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
